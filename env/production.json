@@ -1,0 +1,26 @@
+{
+  "basePath": "/api/v1/",
+  "baseUrl": "https://api.healthychamps.digitranit.com",  
+  "info": {
+      "name": "Mind Champs",
+      "version": "1.0.0",
+      "env": "prod"
+    },
+    "databases": {
+      "default": {
+        "user": "healthy",
+        "password": "admin@1234",
+        "options": {
+          "host": "localhost",
+          "database": "healthychamps",
+          "requestTimeout": 300000,
+          "dialect": "postgres",
+          "logging": true,
+          "dialectOptions": {
+            "encrypt": false
+          },
+          "port": 5433
+        }
+      }
+    }
+  }

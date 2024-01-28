@@ -1,0 +1,276 @@
+{
+    "swagger": "2.0",
+    "info": {
+        "title": "Mind Champs Form Application",
+        "description": "",
+        "version": "1.0"
+    },
+    "produces": [
+        "application/json"
+    ],
+    "tags": [
+        {
+            "name": "Form",
+            "description": ""
+        }
+    ],
+    "host": "",
+    "basePath": "/api/v1/form",
+    "paths": {
+        "/get-form": {
+            "post": {
+                "tags": [
+                    "Get Form List "
+            ],
+                "description": [
+                    "Get Form List with pagination,sorting and searching for table"
+            ],
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "required":true,
+                "parameters": [
+                    {
+                        "in": "body",
+                        "name": "body",
+                        "description": "Payload for get form in table data with pagination, sorting and searching",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/getform"
+                        }
+                    }
+                ],
+                "responses": {
+                    "400": {
+                        "description": "Invalid input"
+                    },
+                    "200": {
+                        "description": "Success",
+                        "examples":{
+
+                       "application/json": {
+                                "pageNumber": 0,
+                                "pageSize": 10,
+                                "sort": [
+                                    {
+                                        "sortColunm": "updatedAt",
+                                        "direction": "DESC"
+                                    }
+                                ],
+                                "search": null
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/add-form": {
+            "post": {
+                "tags": [
+                    "Add form"
+                ],
+                "description": [
+                    "Add the new form"
+                ],
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "required": true,
+                "parameters": [
+                    {
+                        "in": "body",
+                        "name": "body",
+                        "description": "Payload for add new form",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/addform"
+                        }
+                    }
+                ],
+                "responses": {
+                    "400": {
+                        "description": "Invalid input"
+                    },
+                    "200": {
+                        "description": "Success",
+                        "examples": {
+                            "application/json": {
+                                "form": "sample form"
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/update-form": {
+            "put": {
+                "tags": [
+                    "Update the form"
+                ],
+                "description": [
+                    "Update the form"
+                ],
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "required": true,
+                "parameters": [
+                    {
+                        "in": "body",
+                        "name": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/updateform"
+                        }
+                    }
+                ],
+                "responses": {
+                    "400": {
+                        "description": "Invalid input"
+                    },
+                    "200": {
+                        "description": "Success",
+                        "examples": {
+                            "application/json": {
+                                "form_id": "1",
+                                "form": "sample form"
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/delete-form": {
+            "delete": {
+                "tags": [
+                    "Delete the form"
+                ],
+                "description": [
+                    "Delete the form"
+                ],
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "required": true,
+                "parameters": [
+                    {
+                        "in": "body",
+                        "name": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/deleteform"
+                        }
+                    }
+                ],
+                "responses": {
+                    "400": {
+                        "description": "Invalid input"
+                    },
+                    "200": {
+                        "description": "Success",
+                        "examples": {
+                            "application/json": {
+                                "form_id": "1"
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/getAllForm": {
+            "get":{
+                "tags":[
+                    "Get all Form list"
+                ],
+                "description":[
+                    "Get all Form list"
+                ],
+                "consumes":[
+                    "application/json"
+                ],
+                "produces":[
+                    "application/json"
+                ],
+                "responses":{
+                    "400": {
+                        "description": "Invalid input"
+                    },
+                    "200": {
+                        "description": "Success"
+                    }
+                }
+            }
+        }
+    },
+    "definitions": {
+        "getform": {
+            "type": "object",
+            "properties": {
+                "pageNumber": {
+                    "type": "number",
+                    "format": "int64"
+                },
+                "pageSize": {
+                    "type": "number",
+                    "format": "int64"
+                },
+                "sort": {
+                    "type": "array",
+                    "items": {
+                        "type": "object",
+                        "properties": {
+                            "sortColunm": {
+                                "type": "string"
+                            },
+                            "direction": {
+                                "type": "string"
+                            }
+                        }
+                    }
+                },
+                "search": {
+                    "type": "object"
+                }
+            }
+        },
+        "addform": {
+            "type": "object",
+            "properties": {
+                "form": {
+                    "type": "string"
+                }
+            }
+        },
+        "updateform": {
+            "type": "object",
+            "properties": {
+                "form_id": {
+                    "type": "number"
+                },
+                "form": {
+                    "type": "string"
+                }
+            }
+        },
+        "deleteform": {
+            "type": "object",
+            "properties": {
+                "form_id": {
+                    "type": "number"
+                }
+            }
+        }
+    }
+}

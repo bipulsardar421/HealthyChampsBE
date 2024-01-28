@@ -1,0 +1,324 @@
+{
+    "swagger": "2.0",
+    "info": {
+        "title": "Mind Champs Workshop Info application",
+        "description": "",
+        "version": "1.0"
+    },
+    "produces": [
+        "application/json"
+    ],
+    "tags": [
+        {
+            "name": "Workshop Info",
+            "description": ""
+        }
+    ],
+    "host": "",
+    "basePath": "/api/v1/workshop_info",
+    "paths": {
+        "/getWorkshopInfo": {
+            "post": {
+                "tags": [
+                    "Get Workshop Info list"
+                ],
+                "description": [
+                    " Get Workshop Info list with pagination, sorting and searching for table"
+                ],
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "required": true,
+                "parameters": [
+                    {
+                        "in": "body",
+                        "name": "body",
+                        "description": "Payload for get workshop info in table data with pagination, sorting and searching",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/getWorkshopInfo"
+                        }
+                    }
+                ],
+                "responses": {
+                    "400": {
+                        "description": "Invalid input"
+                    },
+                    "200": {
+                        "description": "Success",
+                        "examples": {
+                            "application/json": {
+                                "pageNumber": 0,
+                                "pageSize": 10,
+                                "sort": [
+                                    {
+                                        "sortColunm": "updatedAt",
+                                        "direction": "DESC"
+                                    }
+                                ],
+                                "search": null
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/addWorkshopInfo": {
+            "post": {
+                "tags": [
+                    "Add workshop info"
+                ],
+                "description": [
+                    "Add the new workshop info"
+                ],
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "required": true,
+                "parameters": [
+                    {
+                        "in": "body",
+                        "name": "body",
+                        "description": "Payload for add new workshop info",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/addWorkshopInfo"
+                        }
+                    }
+                ],
+                "responses": {
+                    "400": {
+                        "description": "Invalid input"
+                    },
+                    "200": {
+                        "description": "Success",
+                        "examples": {
+                            "application/json": 
+                            {
+                                "title": "demo",
+                                "start_date": "2024-04-22",
+                                "end_date": "2024-04-23",
+                                "start_time": "16:05",
+                                "end_time": "17:05",
+                                "duration": 1,
+                                "organiser": "admin",
+                                "mode": "offline",
+                                "session_type": "fff",
+                                "session_cost": 100
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/updateWorkshopInfo": {
+            "put": {
+                "tags": [
+                    "Update the workshop info"
+                ],
+                "description": [
+                    "Update the workshop info"
+                ],
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "required": true,
+                "parameters": [
+                    {
+                        "in": "body",
+                        "name": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/updateWorkshopInfo"
+                        }
+                    }
+                ],
+                "responses": {
+                    "400": {
+                        "description": "Invalid input"
+                    },
+                    "200": {
+                        "description": "Success",
+                        "examples": {
+                            "application/json": {
+                                "workshop_info_id": "2mCHbGc0G2aV8lntBpzX4gMl32=",
+                                "title": "demo",
+                                "start_date": "01/02/2023",
+                                "end_date": "02/02/2023",
+                                "start_time": "16:05",
+                                "end_time": "17:05",
+                                "duration": 1,
+                                "organiser": "admin",
+                                "mode": "online",
+                                "session_type": "fff",
+                                "session_cost": 100
+                    }
+                        }
+                    }
+                }
+            }
+        },
+        "/deleteWorkshopInfo": {
+            "delete": {
+                "tags": [
+                    "Delete the workshop info"
+                ],
+                "description": [
+                    "Delete the workshop info"
+                ],
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "required": true,
+                "parameters": [
+                    {
+                        "in": "body",
+                        "name": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/deleteWorkshopInfo"
+                        }
+                    }
+                ],
+                "responses": {
+                    "400": {
+                        "description": "Invalid input"
+                    },
+                    "200": {
+                        "description": "Success",
+                        "examples": {
+                            "application/json": {
+                                "workshop_info_id": "1"
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    },
+    "definitions": {
+        "getWorkshopInfo": {
+            "type": "object",
+            "properties": {
+                "pageNumber": {
+                    "type": "number",
+                    "format": "int64"
+                },
+                "pageSize": {
+                    "type": "number",
+                    "format": "int64"
+                },
+                "sort": {
+                    "type": "array",
+                    "items": {
+                        "type": "object",
+                        "properties": {
+                            "sortColunm": {
+                                "type": "string"
+                            },
+                            "direction": {
+                                "type": "string"
+                            }
+                        }
+                    }
+                },
+                "search": {
+                    "type": "object"
+                }
+            }
+        },
+        "addWorkshopInfo": {
+            "type": "object",
+            "properties": {
+                "title": {
+                    "type": "string"
+                },
+                "start_date": {
+                    "type": "Date"
+                },
+                "end_date": {
+                    "type": "Date"
+                },
+                "start_time": {
+                    "type": "number"
+                },
+                "end_time": {
+                    "type": "number"
+                },
+                "duration": {
+                    "type": "number"
+                },
+                "organiser": {
+                    "type": "string"
+                },
+                "mode": {
+                    "type": "string"
+                },
+                "session_type": {
+                    "type": "string"
+                },
+                "session_cost": {
+                    "type": "number"
+                }
+            }
+        },
+        "updateWorkshopInfo": {
+            "type": "object",
+            "properties": {
+                "workshop_info_id": {
+                    "type": "number"
+                },
+                "title": {
+                    "type": "string"
+                },
+                "start_date": {
+                    "type": "Date"
+                },
+                "end_date": {
+                    "type": "Date"
+                },
+                "start_time": {
+                    "type": "number"
+                },
+                "end_time": {
+                    "type": "number"
+                },
+                "duration": {
+                    "type": "number"
+                },
+                "organiser": {
+                    "type": "string"
+                },
+                "mode": {
+                    "type": "string"
+                },
+                "session_type": {
+                    "type": "string"
+                },
+                "session_cost": {
+                    "type": "number"
+                }
+            }
+        },
+        "deleteWorkshopInfo": {
+            "type": "object",
+            "properties": {
+                "workshop_info_id": {
+                    "type": "number"
+                }
+            }
+        }
+    }
+}

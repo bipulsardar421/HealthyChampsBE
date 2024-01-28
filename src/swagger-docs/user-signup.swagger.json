@@ -1,0 +1,164 @@
+{
+    "swagger": "2.0",
+    "info": {
+        "title": "Mind Champs Ingredient User Signup application",
+        "description": "",
+        "version": "1.0"
+    },
+    "produces": [
+        "application/json"
+    ],
+    "tags": [
+        {
+            "name": "User-Signup",
+            "description": ""
+        }
+    ],
+    "host": "",
+    "basePath": "/api/v1/user_signup",
+    "paths": {
+        "/getUserSignUp": {
+            "post": {
+                "tags": [
+                    "Get User list"
+                ],
+                "description": [
+                    " Get User list with pagination, sorting and searching for table"
+                ],
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "required": true,
+                "parameters": [
+                    {
+                        "in": "body",
+                        "name": "body",
+                        "description": "Payload for get User in table data with pagination, sorting and searching",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/getUserSignUp"
+                        }
+                    }
+                ],
+                "responses": {
+                    "400": {
+                        "description": "Invalid input"
+                    },
+                    "200": {
+                        "description": "Success",
+                        "examples": {
+                            "application/json": {
+                                "pageNumber": 0,
+                                "pageSize": 10,
+                                "sort": [
+                                    {
+                                        "sortColunm": "updatedAt",
+                                        "direction": "DESC"
+                                    }
+                                ],
+                                "search": null
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/addUser": {
+            "post": {
+                "tags": [
+                    "Add user signup"
+                ],
+                "description": [
+                    "Add the new user"
+                ],
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "required": true,
+                "parameters": [
+                    {
+                        "in": "body",
+                        "name": "body",
+                        "description": "Payload for add new user signup",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/addUserSignup"
+                        }
+                    }
+                ],
+                "responses": {
+                    "400": {
+                        "description": "Invalid input"
+                    },
+                    "200": {
+                        "description": "Success",
+                        "examples": {
+                            "application/json": {
+                                "user_signup": "sample user signup"
+                            }
+                        }
+                    }
+                }
+            }
+        }
+       
+        
+    },
+    "definitions": {
+        "getUserSignUp": {
+            "type": "object",
+            "properties": {
+                "pageNumber": {
+                    "type": "number",
+                    "format": "int64"
+                },
+                "pageSize": {
+                    "type": "number",
+                    "format": "int64"
+                },
+                "sort": {
+                    "type": "array",
+                    "items": {
+                        "type": "object",
+                        "properties": {
+                            "sortColunm": {
+                                "type": "string"
+                            },
+                            "direction": {
+                                "type": "string"
+                            }
+                        }
+                    }
+                },
+                "search": {
+                    "type": "object"
+                }
+            }
+        },
+        "addUserSignup": {
+            "type": "object",
+            "properties": {
+                "user_signup": {
+                    "type": "string"
+                }
+            }
+        },
+        "updateIngredientCategory": {
+            "type": "object",
+            "properties": {
+                "ingredient_category_id": {
+                    "type": "number"
+                },
+                "ingredient_category": {
+                    "type": "string"
+                }
+            }
+        }
+    }
+}

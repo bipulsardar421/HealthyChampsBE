@@ -1,0 +1,291 @@
+{
+    "swagger": "2.0",
+    "info": {
+        "title": "Mind Champs Course Info application",
+        "description": "",
+        "version": "1.0"
+    },
+    "produces": [
+        "application/json"
+    ],
+    "tags": [
+        {
+            "name": "Course Info",
+            "description": ""
+        }
+    ],
+    "host": "",
+    "basePath": "/api/v1/course_info",
+    "paths": {
+        "/getCourseInfo": {
+            "post": {
+                "tags": [
+                    "Get Course Info list"
+                ],
+                "description": [
+                    " Get Course Info list with pagination, sorting and searching for table"
+                ],
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "required": true,
+                "parameters": [
+                    {
+                        "in": "body",
+                        "name": "body",
+                        "description": "Payload for get course info in table data with pagination, sorting and searching",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/getCourseInfo"
+                        }
+                    }
+                ],
+                "responses": {
+                    "400": {
+                        "description": "Invalid input"
+                    },
+                    "200": {
+                        "description": "Success",
+                        "examples": {
+                            "application/json": {
+                                "pageNumber": 0,
+                                "pageSize": 10,
+                                "sort": [
+                                    {
+                                        "sortColunm": "updatedAt",
+                                        "direction": "DESC"
+                                    }
+                                ],
+                                "search": null
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/addCourseInfo": {
+            "post": {
+                "tags": [
+                    "Add course info"
+                ],
+                "description": [
+                    "Add the new course info"
+                ],
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "required": true,
+                "parameters": [
+                    {
+                        "in": "body",
+                        "name": "body",
+                        "description": "Payload for add new course info",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/addCourseInfo"
+                        }
+                    }
+                ],
+                "responses": {
+                    "400": {
+                        "description": "Invalid input"
+                    },
+                    "200": {
+                        "description": "Success",
+                        "examples": {
+                            "application/json": {
+                                "course_name": "check",
+                                "author": "ing",
+                                "published_date": "01/02/2022",
+                                "subscription_type": true,
+                                "no_of_sections": 2,
+                                "time_duration": "3"
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/updateCourseInfo": {
+            "put": {
+                "tags": [
+                    "Update the course info"
+                ],
+                "description": [
+                    "Update the course info"
+                ],
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "required": true,
+                "parameters": [
+                    {
+                        "in": "body",
+                        "name": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/updateCourseInfo"
+                        }
+                    }
+                ],
+                "responses": {
+                    "400": {
+                        "description": "Invalid input"
+                    },
+                    "200": {
+                        "description": "Success",
+                        "examples": {
+                            "application/json": {
+                                "course_info_id": "1",
+                                "course_name": "check",
+                                "author": "ing",
+                                "published_date": "01/02/2022",
+                                "subscription_type": true,
+                                "no_of_sections": 2,
+                                "time_duration": "3"
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/deleteCourseInfo": {
+            "delete": {
+                "tags": [
+                    "Delete the course info"
+                ],
+                "description": [
+                    "Delete the course info"
+                ],
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "required": true,
+                "parameters": [
+                    {
+                        "in": "body",
+                        "name": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/deleteCourseInfo"
+                        }
+                    }
+                ],
+                "responses": {
+                    "400": {
+                        "description": "Invalid input"
+                    },
+                    "200": {
+                        "description": "Success",
+                        "examples": {
+                            "application/json": {
+                                "course_info_id": "1"
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    },
+    "definitions": {
+        "getCourseInfo": {
+            "type": "object",
+            "properties": {
+                "pageNumber": {
+                    "type": "number",
+                    "format": "int64"
+                },
+                "pageSize": {
+                    "type": "number",
+                    "format": "int64"
+                },
+                "sort": {
+                    "type": "array",
+                    "items": {
+                        "type": "object",
+                        "properties": {
+                            "sortColunm": {
+                                "type": "string"
+                            },
+                            "direction": {
+                                "type": "string"
+                            }
+                        }
+                    }
+                },
+                "search": {
+                    "type": "object"
+                }
+            }
+        },
+        "addCourseInfo": {
+            "type": "object",
+            "properties": {
+                "course_name": {
+                    "type": "string"
+                },
+                "author":{
+                    "type": "string"
+                },
+                "published_date":{
+                    "type": "date"
+                },
+                "subscription_type":{
+                    "type": "boolean"
+                },
+                "no_of_sections":{
+                    "type": "number"
+                },
+                "time_duration":{
+                    "type": "string"
+                }
+            }
+        },
+        "updateCourseInfo": {
+            "type": "object",
+            "properties": {
+                "course_info_id": {
+                    "type": "number"
+                },
+                "course_name": {
+                    "type": "string"
+                },
+                "author":{
+                    "type": "string"
+                },
+                "published_date":{
+                    "type": "date"
+                },
+                "subscription_type":{
+                    "type": "boolean"
+                },
+                "no_of_sections":{
+                    "type": "number"
+                },
+                "time_duration":{
+                    "type": "string"
+                }
+            }
+        },
+        "deleteCourseInfo": {
+            "type": "object",
+            "properties": {
+                "course_info_id": {
+                    "type": "number"
+                }
+            }
+        }
+    }
+}

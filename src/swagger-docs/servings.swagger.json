@@ -1,0 +1,68 @@
+{
+    "swagger": "3.0.0",
+    "info": {
+        "title": "Servings Application",
+        "description": "",
+        "version": "1.0"
+    },
+    "produces": [
+        "application/json"
+    ],
+    "tags": [
+        {
+            "name": "Servings",
+            "description": ""
+        }
+    ],
+    "host": "",
+    "basePath": "/servings",
+    "path": {
+        "/getServings": {
+            "post": {
+                "tag": ["Servings"],
+                "description": "Display all the Servings list",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "in": "body",
+                        "name": "body",
+                        "schema": {
+                            "$ref": "#/definitions/servings"
+                        }
+                    }
+                ],
+                "responses": {
+                    "400": {
+                        "description": "Invalid input"
+                    },
+                    "200": {
+                        "description": "Success"
+                    }
+                }
+            }
+        }
+    },
+    "definitions": {
+        "servings": {
+            "type": "object",
+            "properties": {
+                "sno": {
+                    "type": "number",
+                    "format": "int64"
+                },
+                "age_group": {
+                    "type": "string"
+                },
+                "no_of_students": {
+                    "type": "number"
+                 }
+            }
+        }
+    }
+
+}

@@ -1,0 +1,65 @@
+{
+    "swagger": "3.0.0",
+    "info": {
+        "title": "Dietary Application",
+        "description": "",
+        "version": "1.0"
+    },
+    "produces": [
+        "application/json"
+    ],
+    "tags": [
+        {
+            "name": "Dietary",
+            "description": ""
+        }
+    ],
+    "host": "",
+    "basePath": "/dietary",
+    "path": {
+        "/getDietary": {
+            "post": {
+                "tag": ["Dietary"],
+                "description": "Display all the Dietary list",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "in": "body",
+                        "name": "body",
+                        "schema": {
+                            "$ref": "#/definitions/dietary"
+                        }
+                    }
+                ],
+                "responses": {
+                    "400": {
+                        "description": "Invalid input"
+                    },
+                    "200": {
+                        "description": "Success"
+                    }
+                }
+            }
+        }
+    },
+    "definitions": {
+        "dietary": {
+            "type": "object",
+            "properties": {
+                "sno": {
+                    "type": "number",
+                    "format": "int64"
+                },
+        
+                "dietary": {
+                    "type": "string"
+                }
+            }
+        }
+    }
+}

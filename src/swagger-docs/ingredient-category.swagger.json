@@ -1,0 +1,275 @@
+{
+    "swagger": "2.0",
+    "info": {
+        "title": "Mind Champs Ingredient Category application",
+        "description": "",
+        "version": "1.0"
+    },
+    "produces": [
+        "application/json"
+    ],
+    "tags": [
+        {
+            "name": "Ingredient Category",
+            "description": ""
+        }
+    ],
+    "host": "",
+    "basePath": "/api/v1/ingredient-category",
+    "paths": {
+        "/get-ingredient-category": {
+            "post": {
+                "tags": [
+                    "Get Ingredient category list"
+                ],
+                "description": [
+                    " Get Ingredient category list with pagination, sorting and searching for table"
+                ],
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "required": true,
+                "parameters": [
+                    {
+                        "in": "body",
+                        "name": "body",
+                        "description": "Payload for get ingredient category in table data with pagination, sorting and searching",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/getIngredientCategory"
+                        }
+                    }
+                ],
+                "responses": {
+                    "400": {
+                        "description": "Invalid input"
+                    },
+                    "200": {
+                        "description": "Success",
+                        "examples": {
+                            "application/json": {
+                                "pageNumber": 0,
+                                "pageSize": 10,
+                                "sort": [
+                                    {
+                                        "sortColunm": "updatedAt",
+                                        "direction": "DESC"
+                                    }
+                                ],
+                                "search": null
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/add-ingredient-category": {
+            "post": {
+                "tags": [
+                    "Add ingredient category"
+                ],
+                "description": [
+                    "Add the new ingredient category"
+                ],
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "required": true,
+                "parameters": [
+                    {
+                        "in": "body",
+                        "name": "body",
+                        "description": "Payload for add new ingredient category",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/addIngredientCategory"
+                        }
+                    }
+                ],
+                "responses": {
+                    "400": {
+                        "description": "Invalid input"
+                    },
+                    "200": {
+                        "description": "Success",
+                        "examples": {
+                            "application/json": {
+                                "ingredient_category": "sample ingredient category"
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/update-ingredient-category": {
+            "put": {
+                "tags": [
+                    "Update the ingredient category"
+                ],
+                "description": [
+                    "Update the ingredient category"
+                ],
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "required": true,
+                "parameters": [
+                    {
+                        "in": "body",
+                        "name": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/updateIngredientCategory"
+                        }
+                    }
+                ],
+                "responses": {
+                    "400": {
+                        "description": "Invalid input"
+                    },
+                    "200": {
+                        "description": "Success",
+                        "examples": {
+                            "application/json": {
+                                "ingredient_category_id": "1",
+                                "ingredient_category": "sample ingredient category"
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/delete-ingredient-category": {
+            "delete": {
+                "tags": [
+                    "Delete the ingredient category"
+                ],
+                "description": [
+                    "Delete the ingredient category"
+                ],
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "required": true,
+                "parameters": [
+                    {
+                        "in": "body",
+                        "name": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/deletedIngredientCategory"
+                        }
+                    }
+                ],
+                "responses": {
+                    "400": {
+                        "description": "Invalid input"
+                    },
+                    "200": {
+                        "description": "Success",
+                        "examples": {
+                            "application/json": {
+                                "ingredient_category_id": "1"
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/allIngredientcat": {
+            "get":{
+                "tags":[
+                    "Get all ingredient catgory list"
+                ],
+                "description":[
+                    "Get all ingredient category list"
+                ],
+                "consumes":[
+                    "application/json"
+                ],
+                "produces":[
+                    "application/json"
+                ],
+                "responses":{
+                    "400": {
+                        "description": "Invalid input"
+                    },
+                    "200": {
+                        "description": "Success"
+                    }
+                }
+            }
+        }
+    },
+    "definitions": {
+        "getIngredientCategory": {
+            "type": "object",
+            "properties": {
+                "pageNumber": {
+                    "type": "number",
+                    "format": "int64"
+                },
+                "pageSize": {
+                    "type": "number",
+                    "format": "int64"
+                },
+                "sort": {
+                    "type": "array",
+                    "items": {
+                        "type": "object",
+                        "properties": {
+                            "sortColunm": {
+                                "type": "string"
+                            },
+                            "direction": {
+                                "type": "string"
+                            }
+                        }
+                    }
+                },
+                "search": {
+                    "type": "object"
+                }
+            }
+        },
+        "addIngredientCategory": {
+            "type": "object",
+            "properties": {
+                "ingredient_category": {
+                    "type": "string"
+                }
+            }
+        },
+        "updateIngredientCategory": {
+            "type": "object",
+            "properties": {
+                "ingredient_category_id": {
+                    "type": "number"
+                },
+                "ingredient_category": {
+                    "type": "string"
+                }
+            }
+        },
+        "deletedIngredientCategory": {
+            "type": "object",
+            "properties": {
+                "ingredient_category_id": {
+                    "type": "number"
+                }
+            }
+        }
+    }
+}

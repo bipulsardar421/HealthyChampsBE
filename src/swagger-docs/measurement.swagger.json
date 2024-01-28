@@ -1,0 +1,281 @@
+{
+    "swagger": "2.0",
+    "info": {
+        "title": "Mind Champs Measurement Application",
+        "description": "",
+        "version": "1.0"
+    },
+    "produces": [
+        "application/json"
+    ],
+    "tags": [
+        {
+            "name": "Measurement",
+            "description": ""
+        }
+    ],
+    "host": "",
+    "basePath": "/api/v1/measurement",
+    "paths": {
+        "/get-measurement": {
+            "post": {
+                "tags": [
+                    "Get Measurement List "
+            ],
+                "description": [
+                    "Get Measurement List with pagination,sorting and searching for table"
+            ],
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "required":true,
+                "parameters": [
+                    {
+                        "in": "body",
+                        "name": "body",
+                        "description": "Payload for get measurement in table data with pagination, sorting and searching",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/getmeasurement"
+                        }
+                    }
+                ],
+                "responses": {
+                    "400": {
+                        "description": "Invalid input"
+                    },
+                    "200": {
+                        "description": "Success",
+                        "examples":{
+
+                       "application/json": {
+                                "pageNumber": 0,
+                                "pageSize": 10,
+                                "sort": [
+                                    {
+                                        "sortColunm": "updatedAt",
+                                        "direction": "DESC"
+                                    }
+                                ],
+                                "search": null
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/add-measurement": {
+            "post": {
+                "tags": [
+                    "Add measurement"
+                ],
+                "description": [
+                    "Add the new measurement"
+                ],
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "required": true,
+                "parameters": [
+                    {
+                        "in": "body",
+                        "name": "body",
+                        "description": "Payload for add new measurement",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/addmeasurement"
+                        }
+                    }
+                ],
+
+                "responses": {
+                    "400": {
+                        "description": "Invalid input"
+                    },
+
+                    "200":
+                    {
+                        "description": "Success",
+                        "examples": {
+                            "application/json": {
+                                "measurement": "sample measurement"
+                            }
+
+                        }
+                    } 
+
+                }
+            }
+        },
+        "/update-measurement": {
+            "put": {
+                "tags": [
+                    "Update the measurement"
+                ],
+                "description": [
+                    "Update the measurement"
+                ],
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "required": true,
+                "parameters": [
+                    {
+                        "in": "body",
+                        "name": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/updatemeasurement"
+                        }
+                    }
+                ],
+                "responses": {
+                    "400": {
+                        "description": "Invalid input"
+                    },
+                    "200": {
+                        "description": "Success",
+                        "examples": {
+                            "application/json": {
+                                "measurement_id": "1",
+                                "measurement": "sample measurement"
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/delete-measurement": {
+            "delete": {
+                "tags": [
+                    "Delete the measurement"
+                ],
+                "description": [
+                    "Delete the measurement"
+                ],
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "required": true,
+                "parameters": [
+                    {
+                        "in": "body",
+                        "name": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/deletemeasurement"
+                        }
+                    }
+                ],
+                "responses": {
+                    "400": {
+                        "description": "Invalid input"
+                    },
+                    "200": {
+                        "description": "Success",
+                        "examples": {
+                            "application/json": {
+                                "measurement_id": "1"
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/getAllMeasurement": {
+            "get":{
+                "tags":[
+                    "Get all Measurement list"
+                ],
+                "description":[
+                    "Get all Measurement list"
+                ],
+                "consumes":[
+                    "application/json"
+                ],
+                "produces":[
+                    "application/json"
+                ],
+                "responses":{
+                    "400": {
+                        "description": "Invalid input"
+                    },
+                    "200": {
+                        "description": "Success"
+                    }
+                }
+            }
+        }
+    },
+    "definitions": {
+        "getmeasurement": {
+            "type": "object",
+            "properties": {
+                "pageNumber": {
+                    "type": "number",
+                    "measurementat": "int64"
+                },
+                "pageSize": {
+                    "type": "number",
+                    "measurementat": "int64"
+                },
+                "sort": {
+                    "type": "array",
+                    "items": {
+                        "type": "object",
+                        "properties": {
+                            "sortColunm": {
+                                "type": "string"
+                            },
+                            "direction": {
+                                "type": "string"
+                            }
+                        }
+                    }
+                },
+                "search": {
+                    "type": "object"
+                }
+            }
+        },
+        "addmeasurement": {
+            "type": "object",
+            "properties": {
+                "measurement": {
+                    "type": "string"
+                }
+            }
+        },
+        "updatemeasurement": {
+            "type": "object",
+            "properties": {
+                "measurement_id": {
+                    "type": "number"
+                },
+                "measurement": {
+                    "type": "string"
+                }
+            }
+        },
+        "deletemeasurement": {
+            "type": "object",
+            "properties": {
+                "measurement_id": {
+                    "type": "number"
+                }
+            }
+        }
+    }
+}

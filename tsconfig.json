@@ -1,0 +1,24 @@
+{
+    "compilerOptions": {
+      "module": "commonjs",
+      "declaration": false,
+      "removeComments": true,
+      "emitDecoratorMetadata": true,
+      "experimentalDecorators": true,
+      "allowJs": true,
+      "target": "es6",
+      "sourceMap": true,
+      "outDir": "./dist",
+      "baseUrl": "./",
+      "incremental": true,
+      "allowSyntheticDefaultImports": true, 
+      /* Advanced Options */
+    "forceConsistentCasingInFileNames": true  /* Disallow inconsistently-cased references to the same file. */,
+    "resolveJsonModule": true,
+      "typeRoots": [
+        "../node_modules/@types"
+    ]
+    },
+    "include": ["src/**/*.ts"],
+    "exclude": ["node_modules"]
+  }

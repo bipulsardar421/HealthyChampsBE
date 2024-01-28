@@ -1,0 +1,251 @@
+{
+    "swagger": "2.0",
+    "info": {
+        "title": "Mind Champs Course Description application",
+        "description": "",
+        "version": "1.0"
+    },
+    "produces": [
+        "application/json"
+    ],
+    "tags": [
+        {
+            "name": "Course Description",
+            "description": ""
+        }
+    ],
+    "host": "",
+    "basePath": "/api/v1/course_info",
+    "paths": {
+        "/getCourseDes": {
+            "post": {
+                "tags": [
+                    "Get Course Description list"
+                ],
+                "description": [
+                    " Get Course Description list with pagination, sorting and searching for table"
+                ],
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "required": true,
+                "parameters": [
+                    {
+                        "in": "body",
+                        "name": "body",
+                        "description": "Payload for get course info in table data with pagination, sorting and searching",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/getCourseDes"
+                        }
+                    }
+                ],
+                "responses": {
+                    "400": {
+                        "description": "Invalid input"
+                    },
+                    "200": {
+                        "description": "Success",
+                        "examples": {
+                            "application/json": {
+                                "pageNumber": 0,
+                                "pageSize": 10,
+                                "sort": [
+                                    {
+                                        "sortColunm": "updatedAt",
+                                        "direction": "DESC"
+                                    }
+                                ],
+                                "search": null
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/addCourseDes": {
+            "post": {
+                "tags": [
+                    "Add course Description"
+                ],
+                "description": [
+                    "Add the new course Description"
+                ],
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "required": true,
+                "parameters": [
+                    {
+                        "in": "body",
+                        "name": "body",
+                        "description": "Payload for add new course info",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/addCourseDes"
+                        }
+                    }
+                ],
+                "responses": {
+                    "400": {
+                        "description": "Invalid input"
+                    },
+                    "200": {
+                        "description": "Success",
+                        "examples": {
+                            "application/json": {
+                                "course_des": "check"
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/updateCourseDes": {
+            "put": {
+                "tags": [
+                    "Update the course Description"
+                ],
+                "description": [
+                    "Update the course Description"
+                ],
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "required": true,
+                "parameters": [
+                    {
+                        "in": "body",
+                        "name": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/updateCourseDes"
+                        }
+                    }
+                ],
+                "responses": {
+                    "400": {
+                        "description": "Invalid input"
+                    },
+                    "200": {
+                        "description": "Success",
+                        "examples": {
+                            "application/json": {
+                                "course_des_id": "1",
+                                "course_des": "check"
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/deleteCourseDes": {
+            "delete": {
+                "tags": [
+                    "Delete the course Description"
+                ],
+                "description": [
+                    "Delete the course Description"
+                ],
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "required": true,
+                "parameters": [
+                    {
+                        "in": "body",
+                        "name": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/deleteCourseDes"
+                        }
+                    }
+                ],
+                "responses": {
+                    "400": {
+                        "description": "Invalid input"
+                    },
+                    "200": {
+                        "description": "Success",
+                        "examples": {
+                            "application/json": {
+                                "course_des_id": "1"
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    },
+    "definitions": {
+        "getCourseDes": {
+            "type": "object",
+            "properties": {
+                "pageNumber": {
+                    "type": "number",
+                    "format": "int64"
+                },
+                "pageSize": {
+                    "type": "number",
+                    "format": "int64"
+                },
+                "sort": {
+                    "type": "array",
+                    "items": {
+                        "type": "object",
+                        "properties": {
+                            "sortColunm": {
+                                "type": "string"
+                            },
+                            "direction": {
+                                "type": "string"
+                            }
+                        }
+                    }
+                },
+                "search": {
+                    "type": "object"
+                }
+            }
+        },
+        "addCourseDes": {
+            "type": "object",
+            "properties": {
+                "course_des": {
+                    "type": "string"
+                }
+            }
+        },
+        "updateCourseDes": {
+            "type": "object",
+            "properties": {
+                "course_des_id": {
+                    "type": "number"
+                },
+                "course_des": {
+                    "type": "string"
+                }
+            }
+        },
+        "deleteCourseDes": {
+            "type": "object",
+            "properties": {
+                "course_des_id": {
+                    "type": "number"
+                }
+            }
+        }
+    }
+}

@@ -1,0 +1,282 @@
+{
+    "swagger": "2.0",
+    "info": {
+        "title": "Recipe Application",
+        "description": "",
+        "version": "1.0"
+    },
+    "produces": [
+        "application/json"
+    ],
+    "tags": [
+        {
+            "name": "Recipe",
+            "description": ""
+        }
+    ],
+    "host": "",
+    "basePath": "/recipe_info",
+    "path": {
+        "/getRecipeInfo": {
+            "post": {
+                "tag": ["Recipe"],
+                "description": "Display all the Recipe list",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "in": "body",
+                        "name": "body",
+                        "description": "Payload for listing new recipe",
+                        "required":true,
+                        "schema": {
+                            "$ref": "#/definitions/getRecipeInfo"
+                        }
+                    }
+                ],
+                "responses": {
+                    "400": {
+                        "description": "Invalid input"
+                    },
+                    "200": {
+                        "description": "Success",
+                        "examples": {
+                            "application/json": {
+                             "pageNumber": 0,
+                             "pageSize": 10,
+                             "sort": [
+                                     {
+                                         "sortColunm": "updatedAt",
+                                         "direction": "DESC"
+                                     }
+                                    ],
+                             "search":  null
+                            }
+                            
+                         }
+                    }
+                }
+            }
+        }
+    },
+    "/addRecipe": {
+        "post": {
+            "tags": [
+                "Add recipeInfo"
+            ],
+            "description": [
+                "Add the new recipeInfo"
+            ],
+            "consumes": [
+                "application/json"
+            ],
+            "produces": [
+                "application/json"
+            ],
+            "required": true,
+            "parameters": [
+                {
+                    "in": "body",
+                    "name": "body",
+                    "description": "Payload for add new recipe",
+                    "required": true,
+                    "schema": {
+                        "$ref": "#/definitions/addRecipe"
+                    }
+                }
+            ],
+            "responses": {
+                "400": {
+                    "description": "Invalid input"
+                },
+                "200": {
+                    "description": "Success",
+                    "examples": {
+                        "application/json": {
+                            "recipe": "sample recipe"
+                        }
+                    }
+                }
+            }
+        }
+    },
+    "/editRecipeInfo/{id}": {
+        "get": {
+            "tags": [
+                "Edit Recipe Functionality"
+            ],
+            "description": "Edit the Recipe Info page",
+            "consumes": [
+                "application/json"
+            ],
+            "produces": [
+                "application/json"
+            ],
+            "parameters": [
+                {
+                    "name": "id",
+                    "in": "path",
+                    "required": true,
+                    "type": "string",
+                    "schema": {
+                        "$ref": "#/definitions/editRecipeInfo/:id"
+                    }
+                }
+            ],
+            "responses": {
+                "400": {
+                    "description": "Invalid input"
+                },
+                "200": {
+                    "description": "Success"
+                }
+            }
+        }
+    },
+    "/updateRecipeInfo": {
+        "put": {
+            "tags": [
+                "Update the Recipe Info"
+            ],
+            "description": [
+                "Update the Recipe Info"
+            ],
+            "consumes": [
+                "application/json"
+            ],
+            "produces": [
+                "application/json"
+            ],
+            "required": true,
+            "parameters": [
+                {
+                    "in": "body",
+                    "name": "body",
+                    "required": true,
+                    "schema": {
+                        "$ref": "#/definitions/updateRecipeInfo"
+                    }
+                }
+            ],
+            "responses": {
+                "400": {
+                    "description": "Invalid input"
+                },
+                "200": {
+                    "description": "Success",
+                    "examples": {
+                        "application/json": {
+                            "recipe_info_id": "98",
+                            "recipe_name": "shoyu ramen"
+                        }
+                    }
+                }
+            }
+        }
+    },
+    "/deleteRecipeInfo": {
+        "put": {
+            "tags": [
+                "Delete the recipe"
+            ],
+            "description": [
+                "Delete the recipe"
+            ],
+            "consumes": [
+                "application/json"
+            ],
+            "produces": [
+                "application/json"
+            ],
+            "required": true,
+            "parameters": [
+                {
+                    "in": "body",
+                    "name": "body",
+                    "required": true,
+                    "schema": {
+                        "$ref": "#/definitions/deleteRecipeInfo"
+                    }
+                }
+            ],
+            "responses": {
+                "400": {
+                    "description": "Invalid input"
+                },
+                "200": {
+                    "description": "Success",
+                    "examples": {
+                        "application/json": {
+                            "recipe_info_id": ["98"]
+                        }
+                    }
+                }
+            }
+        }
+    },
+"definitions": {
+       "getRecipeInfo": {
+        "type": "object",
+        "properties": {
+            "pageNumber": {
+                "type": "number",
+                "format": "int64"
+            },
+            "pageSize": {
+                "type": "number",
+                "format": "int64"
+            },
+            "sort": {
+                "type": "array",
+                "items": {
+                    "type": "object",
+                    "properties": {
+                        "sortColunm": {
+                            "type": "string"
+                        },
+                        "direction": {
+                            "type": "string"
+                        }
+                    }
+                },
+                "search": {
+                    "type": "object"
+                }
+            }
+        }
+    },
+    "addRecipe": {
+        "type": "object",
+        "properties": {
+            "form": {
+                "type": "string"
+            }
+        }
+    },
+    "updateRecipeInfo": {
+        "type": "object",
+        "properties": {
+            "recipe_info_id": {
+                "type": "number"
+            },
+            "recipe_name": {
+                "type": "string"
+            }
+        }
+    },
+    "deleteRecipeInfo": {
+        "type": "object",
+        "properties": {
+            "recipe_info_id": {
+                "type": "number"
+            }
+        }
+    }
+}
+}
+
+    

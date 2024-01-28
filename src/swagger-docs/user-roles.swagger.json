@@ -1,0 +1,283 @@
+{
+    "swagger": "2.0",
+    "info": {
+        "title": "Mind Champs UserRoles & Functionality",
+        "description": "",
+        "version": "1.0"
+    },
+    "produces": [
+        "application/json"
+    ],
+    "tags": [
+        {
+            "name": "UserRoles & Functionality",
+            "description": ""
+        }
+    ],
+    "host": "",
+    "basePath": "/api/v1/user_roles",
+    "paths": {
+        "/create-user": {
+            "post": {
+                "tags": [
+                    "Create User Roles and Functionality"
+                ],
+                "description": [
+                    "Create User Roles and Functionality"
+                ],
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "required": true,
+                "parameters": [
+                    {
+                        "in": "body",
+                        "name": "body",
+                        "description": "Create User roles and functionality access"
+                    }
+                ],
+                "responses": {
+                    "400": {
+                        "description": "Invalid input"
+                    },
+                    "200": {
+                        "description": "Success",
+                        "examples": {
+                            "application/json": {
+                                "userRoles": [
+                                    {
+                                        "role_name": "admin",
+                                        "status": "Active"
+                                    }
+                                ],
+                                "access_fun": [
+                                    {
+                                        "module": "ingredient",
+                                        "access_fun": [
+                                            "grid"
+                                        ]
+                                    }
+                                ]
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/get-user-list": {
+            "post": {
+                "tags": [
+                    "getUserRolesFunctionalityList"
+                ],
+                "description": "Get all getUserRolesFunctionality list with pagination, sorting and search",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "required": false,
+                "parameters": [
+                    {
+                        "in": "body",
+                        "name": "body",
+                        "description": "Payload for get User role functionality in table data with pagination, sorting and searching",
+                        "required": false,
+                        "schema": {
+                            "$ref": "#/definitions/getUserRolesList"
+                        }
+                    }
+                ],
+                "responses": {
+                    "400": {
+                        "description": "Invalid input"
+                    },
+                    "200": {
+                        "description": "Success",
+                        "examples": {
+                            "application/json": {
+                                "pageNumber": 0,
+                                "pageSize": 10,
+                                "sort": [
+                                    {
+                                        "sortColunm": "updatedAt",
+                                        "direction": "DESC"
+                                    }
+                                ],
+                                "search": null
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/edit-user-list/{id}": {
+            "get": {
+                "tags": [
+                    "Edit UserRole Functionality"
+                ],
+                "description": "Edit the UserRole and Function page",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "400": {
+                        "description": "Invalid input"
+                    },
+                    "200": {
+                        "description": "Success"
+                    }
+                }
+            }
+        },
+        "/update-user-list": {
+            "put": {
+                "tags": [
+                    "Update the UserRole Function"
+                ],
+                "description": [
+                    "Update the UserRole Function"
+                ],
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "required": true,
+                "parameters": [
+                    {
+                        "in": "body",
+                        "name": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/updateUserList"
+                        }
+                    }
+                ],
+                "responses": {
+                    "400": {
+                        "description": "Invalid input"
+                    },
+                    "200": {
+                        "description": "Success",
+                        "examples": {
+                            "application/json": {
+                                "role_id": "1",
+                                "role_name": "sample"
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/delete-user-list": {
+            "put": {
+                "tags": [
+                    "Delete the userlist"
+                ],
+                "description": [
+                    "Delete the userlist"
+                ],
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "required": true,
+                "parameters": [
+                    {
+                        "in": "body",
+                        "name": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/deleteuserlist"
+                        }
+                    }
+                ],
+                "responses": {
+                    "400": {
+                        "description": "Invalid input"
+                    },
+                    "200": {
+                        "description": "Success",
+                        "examples": {
+                            "application/json": {
+                                "role_id": ["35"]
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    },
+    "definitions": {
+        "createUserRoles": {
+            "type": "object"
+        },
+        "getUserRolesList": {
+            "type": "object",
+            "properties": {
+                "pageNumber": {
+                    "type": "number",
+                    "format": "int64"
+                },
+                "pageSize": {
+                    "type": "number",
+                    "format": "int64"
+                },
+                "sort": {
+                    "type": "array",
+                    "items": {
+                        "type": "object",
+                        "properties": {
+                            "sortColunm": {
+                                "type": "string"
+                            },
+                            "direction": {
+                                "type": "string"
+                            }
+                        }
+                    },
+                    "search": {
+                        "type": "object"
+                    }
+                }
+            }
+        },
+        "updateUserList": {
+            "type": "object",
+            "properties": {
+                "role_id": {
+                    "type": "number"
+                },
+                "role_name": {
+                    "type": "string"
+                }
+            }
+        },
+        "deleteuserlist": {
+            "type": "object",
+            "properties": {
+                "role_id": {
+                    "type": "number"
+                }
+            }
+        }
+    }
+}

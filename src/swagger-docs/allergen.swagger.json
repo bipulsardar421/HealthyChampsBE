@@ -1,0 +1,65 @@
+{
+    "swagger": "3.0.0",
+    "info": {
+        "title": "Allergen Application",
+        "description": "",
+        "version": "1.0"
+    },
+    "produces": [
+        "application/json"
+    ],
+    "tags": [
+        {
+            "name": "Allergen",
+            "description": ""
+        }
+    ],
+    "host": "",
+    "basePath": "/allergen",
+    "path": {
+        "/getAllergen": {
+            "post": {
+                "tag": ["Allergen"],
+                "description": "Display all the Allergen list",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "in": "body",
+                        "name": "body",
+                        "schema": {
+                            "$ref": "#/definitions/allergen"
+                        }
+                    }
+                ],
+                "responses": {
+                    "400": {
+                        "description": "Invalid input"
+                    },
+                    "200": {
+                        "description": "Success"
+                    }
+                }
+            }
+        }
+    },
+    "definitions": {
+        "allergen": {
+            "type": "object",
+            "properties": {
+                "sno": {
+                    "type": "number",
+                    "format": "int64"
+                },
+        
+                "allergen": {
+                    "type": "string"
+                }
+            }
+        }
+    }
+}

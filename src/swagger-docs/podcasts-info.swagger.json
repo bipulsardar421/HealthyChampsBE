@@ -1,0 +1,276 @@
+{
+    "swagger": "2.0",
+    "info": {
+        "title": "Mind Champs PodcastsInfo application",
+        "description": "",
+        "version": "1.0"
+    },
+    "produces": [
+        "application/json"
+    ],
+    "tags": [
+        {
+            "name": "PodcastsInfo",
+            "description": ""
+        }
+    ],
+    "host": "",
+    "basePath": "/api/v1/podcasts_info",
+    "paths": {
+        "/getPodcastsInfo": {
+            "post": {
+                "tags": [
+                    "Get PodcastsInfo list"
+                ],
+                "description": [
+                    " Get PodcastsInfo list with pagination, sorting and searching for table"
+                ],
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "required": true,
+                "parameters": [
+                    {
+                        "in": "body",
+                        "name": "body",
+                        "description": "Payload for get PodcastsInfo in table data with pagination, sorting and searching",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/getPodcastsInfo"
+                        }
+                    }
+                ],
+                "responses": {
+                    "400": {
+                        "description": "Invalid input"
+                    },
+                    "200": {
+                        "description": "Success",
+                        "examples": {
+                            "application/json": {
+                                "pageNumber": 0,
+                                "pageSize": 10,
+                                "sort": [
+                                    {
+                                        "sortColunm": "updatedAt",
+                                        "direction": "DESC"
+                                    }
+                                ],
+                                "search": null
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/addPodcastsInfo": {
+            "post": {
+                "tags": [
+                    "Add podcasts-info"
+                ],
+                "description": [
+                    "Add the new podcasts-info"
+                ],
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "required": true,
+                "parameters": [
+                    {
+                        "in": "body",
+                        "name": "body",
+                        "description": "Payload for add new podcasts-info",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/addPodcastsInfo"
+                        }
+                    }
+                ],
+                "responses": {
+                    "400": {
+                        "description": "Invalid input"
+                    },
+                    "200": {
+                        "description": "Success",
+                        "examples": {
+                            "application/json":{
+                                "podcast_title": "check",
+                                "time_duration": "3",
+                                "no_of_episodes": 2,
+                                "subscription_type": true
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/updatePodcastsInfo": {
+            "put": {
+                "tags": [
+                    "Update the podcasts-info"
+                ],
+                "description": [
+                    "Update the podcasts-info"
+                ],
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "required": true,
+                "parameters": [
+                    {
+                        "in": "body",
+                        "name": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/updatePodcastsInfo"
+                        }
+                    }
+                ],
+                "responses": {
+                    "400": {
+                        "description": "Invalid input"
+                    },
+                    "200": {
+                        "description": "Success",
+                        "examples": {
+                            "application/json": {
+                                "podcasts_info_id": 1,
+                                "podcast_title": "check",
+                                "time_duration": "3",
+                                "no_of_episodes": 2,
+                                "subscription_type": true
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/deletePodcastsInfo": {
+            "delete": {
+                "tags": [
+                    "Delete the podcasts-info"
+                ],
+                "description": [
+                    "Delete the podcasts-info"
+                ],
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "required": true,
+                "parameters": [
+                    {
+                        "in": "body",
+                        "name": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/deletePodcastsInfo"
+                        }
+                    }
+                ],
+                "responses": {
+                    "400": {
+                        "description": "Invalid input"
+                    },
+                    "200": {
+                        "description": "Success",
+                        "examples": {
+                            "application/json": {
+                                "podcasts_info_id": "2mCHbGc0G2aV8lntBpzX4gMl32="
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    },
+    "definitions": {
+        "getPodcastsInfo": {
+            "type": "object",
+            "properties": {
+                "pageNumber": {
+                    "type": "number",
+                    "format": "int64"
+                },
+                "pageSize": {
+                    "type": "number",
+                    "format": "int64"
+                },
+                "sort": {
+                    "type": "array",
+                    "items": {
+                        "type": "object",
+                        "properties": {
+                            "sortColunm": {
+                                "type": "string"
+                            },
+                            "direction": {
+                                "type": "string"
+                            }
+                        }
+                    }
+                },
+                "search": {
+                    "type": "object"
+                }
+            }
+        },
+        "addPodcastsInfo": {
+            "type": "object",
+            "properties": {
+                "podcasts_title": {
+                    "type": "string"
+                },
+                "time_duration":{
+                    "type":"string"
+                },
+                "no_of_episodes":{
+                    "type":"number"
+                },
+                "subscription_type":{
+                    "type":"boolean"
+                }
+            }
+        },
+        "updatePodcastsInfo": {
+            "type": "object",
+            "properties": {
+                "podcasts_info_id": {
+                    "type": "number"
+                },
+                "podcasts_title": {
+                    "type": "string"
+                },
+                "time_duration":{
+                    "type":"string"
+                },
+                "no_of_episodes":{
+                    "type":"number"
+                },
+                "subscription_type":{
+                    "type":"boolean"
+                }
+            }
+        },
+        "deletePodcastsInfo": {
+            "type": "object",
+            "properties": {
+                "podcasts_info_id":
+                {
+                    "type": "number"
+                }
+            }
+        }
+    }
+}

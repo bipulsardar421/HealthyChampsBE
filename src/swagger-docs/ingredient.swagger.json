@@ -1,0 +1,131 @@
+{
+    "swagger": "2.0",
+    "info": {
+        "title": "Mind Champs Ingredient application",
+        "description": "",
+        "version": "1.0"
+    },
+    "produces": [
+        "application/json"
+    ],
+    "tags": [
+        {
+            "name": "Ingredient",
+            "description": ""
+        }
+    ],
+    "host": "",
+    "basePath": "/api/v1/ingredient",
+    "paths": {
+        "/getIngredient": {
+            "post": {
+                "tags": [
+                    "getIngredient"
+                ],
+                "description": "Get all ingredient list with pagination, sorting and search",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "required": false,
+                "parameters": [
+                    {
+                        "in": "body",
+                        "name": "body",
+                        "description": "Payload for get ingredient in table data with pagination, sorting and searching",
+                        "required": false,
+                        "schema": {
+                            "$ref": "#/definitions/getIngredient"
+                        }
+                    }
+                ],
+                "responses": {
+                    "400": {
+                        "description": "Invalid input"
+                    },
+                    "200": {
+                        "description": "Success",
+                        "examples": {
+                            "application/json": {
+                             "pageNumber": 0,
+                             "pageSize": 10,
+                             "sort": [
+                                     {
+                                         "sortColunm": "updatedAt",
+                                         "direction": "DESC"
+                                     }
+                                    ],
+                             "search":  null
+                            }
+                            
+                         }
+                    }
+                }
+            }
+        },
+        "/editIngredient/{id}": {
+            "get": {
+                "tags": [
+                    "Edit Ingredient"
+                ],
+                "description": "Edit the ingredient page",
+                "consumes":[
+                    "application/json"
+                ],
+                "produces":[
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name":"id",
+                        "in":"path",
+                        "required":true,
+                        "type":"string"
+                    }
+                ],
+                "responses": {
+                    "400": {
+                        "description": "Invalid input"
+                    },
+                    "200": {
+                        "description": "Success"
+                    }
+                }
+            }
+        }
+    },
+    "definitions": {
+        "getIngredient": {
+            "type": "object",
+            "properties": {
+                "pageNumber": {
+                    "type": "number",
+                    "format": "int64"
+                },
+                "pageSize": {
+                    "type": "number",
+                    "format": "int64"
+                },
+                "sort": {
+                    "type": "array",
+                    "items": {
+                        "type": "object",
+                        "properties": {
+                            "sortColunm": {
+                                "type": "string"
+                            },
+                            "direction": {
+                                "type": "string"
+                            }
+                        }
+                    }
+                },
+                "search": {
+                    "type": "object"
+                }
+            }
+        }
+    }
+}

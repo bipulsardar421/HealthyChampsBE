@@ -1,0 +1,14 @@
+node_modules
+/logs/*
+*.log
+*npm-debug*
+dist
+/env/development.json
+*env/development.json
+/.lh
+
+*.jpg
+*.JPEG
+*.mp4
+*.png
+*.mp3

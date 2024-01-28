@@ -1,0 +1,54 @@
+import { RecipeAgeGroupInterface } from "./recipe-age-group.interface";
+import { RecipeAllergenInterface } from "./recipe-allergen.interface";
+import { RecipeCookMthdInterface } from "./recipe-cookMthd.interface";
+import { RecipeDietaryInterface } from "./recipe-dietary.interface";
+import { RecipeHighlyNutriInterface } from "./recipe-highly-nutritional.interface";
+import { RecipeImageInterface } from "./recipe-image.interface";
+import { RecipeIngredienInterface } from "./recipe-ingredient.interface";
+import { RecipeNutritionalCatInterface } from "./recipe-nutritiona-category.interface";
+import { RecipeTipsInterface } from "./recipe-tips.interface";
+import { RecipeVideoInterface } from "./recipe-video.interface";
+
+export type RecipeInfoInterface = {
+  recipe_info_id: number;
+  recipe_name: string;
+  dietary?: RecipeDietaryInterface[];
+  allergen?: RecipeAllergenInterface[];
+  highly_nutritional?: RecipeHighlyNutriInterface[];
+  preparation_time: string;
+  cooking_time: string;
+  calories: number;
+  difficulty_level: string;
+  age_group?: RecipeAgeGroupInterface[];
+  meal_type: number;
+  nutrition_category?: RecipeNutritionalCatInterface[];
+  no_of_serves: number;
+  meal_time: string;
+  mostly_liked: boolean | null;
+  nutrition_rich: boolean | null;
+  mostly_consumed: boolean | null;
+  recipe_ingredient?: RecipeIngredienInterface[];
+  cook_method?: RecipeCookMthdInterface[];
+  recipe_tip?: RecipeTipsInterface[];
+  recipe_images?: RecipeImageInterface[];
+  recipe_videos?: RecipeVideoInterface[];
+};
+
+export interface RequestRecipeInfoInterface {
+  recipe_name: string;
+  dietary: number[];
+  allergen: number[];
+  highly_nutritional: number[];
+  preparation_time: string;
+  cooking_time: string;
+  calories: number;
+  difficulty_level: string;
+  age_group: number[];
+  meal_type: number;
+  nutrition_category: number[];
+  no_of_serves: number;
+  meal_time: string;
+  mostly_liked: boolean | null;
+  nutrition_rich: boolean | null;
+  mostly_consumed: boolean | null;
+};
