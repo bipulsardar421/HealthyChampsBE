@@ -8,7 +8,7 @@
     "pre-prod": "node mindchamps-api.js",
     "build": "webpack --env APP_ENV=local --mode=development --progress",
     "build:dev": "webpack --env APP_ENV=development --mode=development  --progress",
-    "build:prod": "webpack --env APP_ENV=production --env=production --mode=production --progress",
+    "build:prod": "npm install && webpack --env APP_ENV=production --env=production --mode=production --progress",
     "lint": "eslint . --ext .ts",
     "lint:fix": "eslint . --ext .ts --fix",
     "prettier:fix": "prettier --parser typescript --write \"src/**/*.ts\"",
