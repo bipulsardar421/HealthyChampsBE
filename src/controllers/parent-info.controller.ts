@@ -70,8 +70,8 @@ export class ParentInfoController extends MailCompliper implements AppRoute {
       service: 'gmail',
       port: 465,
       auth: {
-        user: "admin.healthychamps@digitranit.com",
-        pass: "qnrtsdijchqfiebo",
+        user: "bs.bipulsardar@gmail.com",
+        pass: "beepule1232",
       }
     }));
   }
